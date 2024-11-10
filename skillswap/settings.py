@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Own apps
+    'pages',
     'tutoring',
 
     # Third Party Apps
