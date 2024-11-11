@@ -10,6 +10,10 @@ class User(models.Model):
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
 
+    
+    class Meta:
+        db_table = "users"
+    
     def __str__(self):
         return self.username
 
@@ -19,12 +23,18 @@ class Category(models.Model):
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     path = models.CharField(max_length=1000, null=True, blank=True)
 
+    class Meta:
+        db_table = "categories"
+    
     def __str__(self):
         return self.name
 
 
 class TargetAudience(models.Model):
     name = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = "target_audiences"
 
     def __str__(self):
         return self.name
@@ -40,6 +50,9 @@ class TutoringService(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = "tutoring_services"
+
     def __str__(self):
         return self.title
 
@@ -51,6 +64,7 @@ class ServiceAudience(models.Model):
 
     class Meta:
         unique_together = ('tutoring_service', 'target_audience')
+        db_table = "service_audiences"
 
     def __str__(self):
         return f"{self.tutoring_service.title} - {self.target_audience.name}"
