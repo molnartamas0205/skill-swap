@@ -4,7 +4,7 @@ from django.contrib.auth.hashers import make_password
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, username, email, password, full_name):
+    def create_user(self, email, password, full_name, username=None, **extra_fields):
         """
         Creates and returns a user with an email and password.
         """
@@ -17,7 +17,8 @@ class CustomUserManager(BaseUserManager):
         
         user = self.model(username=username,
             email=email,
-            full_name=full_name
+            full_name=full_name,
+            **extra_fields
         )
         
         user.save(using=self._db) 
@@ -25,15 +26,18 @@ class CustomUserManager(BaseUserManager):
         user.save()
         return user
     
-    def create_superuser(self, username, email, password=None, full_name=None):
-        """
-        Creates and returns a superuser with is_staff and is_active as True.
-        """
-        user = self.create_user(username, email, password, full_name)
-        user.is_staff = True
-        user.is_active = True
-        user.save(using=self._db)
-        return user
+    def create_superuser(self, email, password=None, full_name=None, username=None, **extra_fields):
+        """Create and return a superuser with an email."""
+        extra_fields.setdefault('is_staff', True)
+        
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        
+
+        extra_fields.setdefault('username', email.split('@')[0])
+
+        return self.create_user(email, username, password, **extra_fields)
 
     
     
@@ -41,8 +45,7 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True, null=False)
-    password_hash = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
+    password_hash = models.CharField(max_length=255, null=False)
     full_name = models.CharField(max_length=255, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -50,10 +53,11 @@ class CustomUser(AbstractBaseUser):
     last_login = None
     password = None
     
+    
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'  # The field used for authentication
-    REQUIRED_FIELDS = [ 'full_name']
+    REQUIRED_FIELDS = []
     class Meta:
         db_table = "users"
     
@@ -85,6 +89,19 @@ class CustomUser(AbstractBaseUser):
         """
         from django.contrib.auth.hashers import check_password
         return check_password(raw_password, self.password_hash)
+    
+     # Django adminisztrációhoz szükséges metódusok
+    def has_perm(self, perm, obj=None):
+        """
+        Egyéni engedélyeket kezel.
+        """
+        return True  # A felhasználónak minden engedély megadható, vagy testre szabható.
+
+    def has_module_perms(self, app_label):
+        """
+        Meghatározza, hogy a felhasználónak van-e engedélye az adott modulhoz.
+        """
+        return True  # Minden alkalmazáshoz engedélyezve van.
     
     def __str__(self):
         return self.username
