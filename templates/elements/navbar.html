@@ -1,4 +1,4 @@
-<nav class="navbar  navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url 'home'%}">SkillSwap</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -6,16 +6,18 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{% url 'about' %}">About</a>
         </li>
-        {% if not user.is_authenticated %}
-        <li class="nav-item ml-2">
-          <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+      </ul>
+      {% if not user.is_authenticated %}
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
         </li>
-        <li class="nav-item ml-2">
-          <a class="btn btn-primary" href="{% url 'register' %}">Register</a>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Register</a>
         </li>
         {% else %}
         <li class="nav-item ml-2">
@@ -24,8 +26,6 @@
         {% endif %}
 
       </ul>
-
-
     </div>
   </div>
 </nav>
