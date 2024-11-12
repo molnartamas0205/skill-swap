@@ -19,13 +19,14 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'register' %}">Register</a>
         </li>
-        {% else %}
-        <li class="nav-item ml-2">
-          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-        </li>
-        {% endif %}
-
       </ul>
+      {% else %}
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+      </ul>
+      {% endif %}
     </div>
   </div>
 </nav>
