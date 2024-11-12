@@ -39,3 +39,6 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect('pages:home')  # Redirect to the home page after logout
+
+def tutor_list_view(request, *args, **kwargs):
+    return render(request, 'tutor_list.html', {})
