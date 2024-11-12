@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     # Third Party Apps
 ]
 
+SITE_ID = 1
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -119,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 #This tells Django to use your custom User model instead of the default User model:
-AUTH_USER_MODEL = 'tutoring.User'
+AUTH_USER_MODEL = 'tutoring.CustomUser'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',

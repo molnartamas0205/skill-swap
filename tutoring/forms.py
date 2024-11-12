@@ -3,14 +3,14 @@ from django.contrib.auth.password_validation import validate_password
 
 from django.contrib.auth import authenticate
 
-from . models import User
+from . models import CustomUser
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, required=True)
     password_confirm = forms.CharField(widget=forms.PasswordInput, required=True)
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['username', 'email', 'full_name']  #ModelForm automatically adds the modeled fields to the form if it is included in the fields
 
     def clean(self):
