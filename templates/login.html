@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="d-flex justify-content-center align-items-center mt-5">
-        <div class="card justify-content-center" style="width: 18rem">
+        <div class="card justify-content-center shadow p-3 mb-5" style="width: 26rem">
             <div class="card-body">
                 <h2 class="card-title">Login</h2>
                 <form method="POST">
@@ -15,7 +15,7 @@
                     {{ form.password }}
                     <label for="{{ form.password.id_for_label }}">Password</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
                 </form>
 
                 {% if form.errors %}
