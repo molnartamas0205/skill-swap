@@ -6,8 +6,26 @@ from django.contrib.auth import authenticate
 from . models import CustomUser
 
 class RegistrationForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput, required=True)
-    password_confirm = forms.CharField(widget=forms.PasswordInput, required=True)
+    username = forms.CharField(label='Username',
+                               widget=forms.TextInput(attrs={'class': 'form-control',
+                                                           'placeholder': 'Username'}),
+                               required=True)
+    email = forms.EmailField(label='Email',
+                             widget=forms.EmailInput(attrs={'class': 'form-control',
+                                                           'placeholder': 'Email'}),
+                             required=True)
+    full_name = forms.CharField(label='Full Name',
+                                widget=forms.TextInput(attrs={'class': 'form-control',
+                                                            'placeholder': 'Full Name'}),
+                                required=True)
+    password = forms.CharField(label='Password',
+                               widget=forms.PasswordInput(attrs={'class': 'form-control',
+                                                                'placeholder': 'Password'}),
+                               required=True)
+    password_confirm = forms.CharField(label='Confirm Password',
+                                       widget=forms.PasswordInput(attrs={'class': 'form-control',
+                                                                        'placeholder': 'Confirm Password'}),
+                                       required=True)
 
     class Meta:
         model = CustomUser
