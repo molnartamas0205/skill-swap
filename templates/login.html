@@ -1,16 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Login</h2>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+    <div class="d-flex justify-content-center align-items-center mt-5">
+        <div class="card justify-content-center shadow p-3 mb-5" style="width: 26rem">
+            <div class="card-body">
+                <h2 class="card-title">Login</h2>
+                <form method="POST">
+                {% csrf_token %}
+                <div class="form-floating mb-3 mt-3">
+                    {{ form.email }}
+                    <label for="{{ form.email.id_for_label }}">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                    {{ form.password }}
+                    <label for="{{ form.password.id_for_label }}">Password</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
 
-  {% if form.errors %}
-    <p style="color: red;">{{ form.errors }}</p>
-  {% endif %}
+                {% if form.errors %}
+                <p style="color: red;">{{ form.errors }}</p>
+                {% endif %}
 
-<p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>  
+                <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

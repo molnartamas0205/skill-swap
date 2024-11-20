@@ -52,8 +52,14 @@ class RegistrationForm(forms.ModelForm):
     
 
 class LoginForm(forms.Form):
-        email = forms.EmailField(required=True)
-        password = forms.CharField(widget=forms.PasswordInput, required=True)
+        email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-control',
+                                                                               'placeholder': 'Email'
+                                                                               }),
+                                 required=True)
+        password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control',
+                                                                                       'placeholder': 'Password'
+                                                                                       }),
+                                   required=True)
 
         def clean(self):
             cleaned_data = super().clean()
