@@ -3,7 +3,7 @@ from django.contrib.auth.password_validation import validate_password
 
 from django.contrib.auth import authenticate
 
-from . models import CustomUser
+from . models import Category, CustomUser, TargetAudience, TutoringService
 
 class RegistrationForm(forms.ModelForm):
     username = forms.CharField(label='Username',
@@ -73,3 +73,25 @@ class LoginForm(forms.Form):
             
             cleaned_data['user'] = user
             return cleaned_data
+        
+class AdvertisementForm(forms.ModelForm):
+    target_audiences = forms.ModelMultipleChoiceField(
+        queryset=TargetAudience.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required = True,
+        label="Target Audiences"
+
+    )
+    class Meta:
+        model = TutoringService
+        fields = ['title', 'description', 'category', 'price', 'available', 'target_audiences']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 5}),
+            'price': forms.NumberInput(attrs={'step': 5}),
+        }
+        labels = {
+            'title': 'Advertisement Title',
+            'description': 'Description',
+            'category': 'Category',
+            'price': 'Price (USD)', 
+        }
