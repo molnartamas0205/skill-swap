@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
-from .models import CustomUser, CustomUserManager, ServiceAudience
+from .models import CustomUser, CustomUserManager, ServiceAudience, TutoringService
 from . forms import AdvertisementForm, LoginForm, RegistrationForm
 
 
@@ -49,7 +49,8 @@ def logout_view(request):
     return redirect('home')  # Redirect to the home page after logout
 
 def tutor_list_view(request, *args, **kwargs):
-    return render(request, 'tutor_list.html', {})
+    tutors = TutoringService.objects.all()
+    return render(request, 'tutor_list.html', {'tutors':tutors})
 
 
 @login_required
