@@ -3,7 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
 from .models import CustomUser, CustomUserManager, ServiceAudience, TutoringService
-from . forms import AdvertisementForm, LoginForm, RegistrationForm
+from .forms import AdvertisementForm, LoginForm, RegistrationForm
 
 
 
@@ -50,7 +50,7 @@ def logout_view(request):
 
 def tutor_list_view(request, *args, **kwargs):
     tutors = TutoringService.objects.all()
-    return render(request, 'tutor_list.html', {'tutors':tutors})
+    return render(request, 'tutor_list.html', {'tutors': tutors})
 
 
 @login_required
