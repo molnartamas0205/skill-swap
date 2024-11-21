@@ -3,7 +3,7 @@ from django.contrib.auth.password_validation import validate_password
 
 from django.contrib.auth import authenticate
 
-from . models import Category, CustomUser, TargetAudience, TutoringService
+from .models import Category, CustomUser, TargetAudience, TutoringService
 
 class RegistrationForm(forms.ModelForm):
     username = forms.CharField(label='Username',
