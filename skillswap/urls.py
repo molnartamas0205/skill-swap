@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from pages.views import home_view, about_view
-from tutoring.views import login_view, register_view, logout_view, tutor_list_view
+from tutoring.views import login_view, register_view, logout_view, tutor_list_view, create_advertisement_view
 
 
 urlpatterns = [
@@ -27,5 +27,6 @@ urlpatterns = [
     path('register/', register_view, name='register'),
     path('logout/', logout_view, name='logout'),
     path('tutors/', tutor_list_view, name='tutors'),
-    path('admin/', admin.site.urls),
+    path('create/', create_advertisement_view, name = "create_advertisement"),
+    path('admin/', admin.site.urls), #Keep admin at bottom
 ]
