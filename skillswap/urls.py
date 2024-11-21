@@ -27,6 +27,6 @@ urlpatterns = [
     path('register/', register_view, name='register'),
     path('logout/', logout_view, name='logout'),
     path('tutors/', tutor_list_view, name='tutors'),
-    path('admin/', admin.site.urls),
     path('create/', create_advertisement_view, name = "create_advertisement"),
+    path('admin/', admin.site.urls), #Keep admin at bottom
 ]
