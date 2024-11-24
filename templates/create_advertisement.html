@@ -1,12 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Create Advertisement</h1>
-
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
+    <div class="d-flex justify-content-center align-items-center mt-5">
+        <div class="card justify-content-center shadow p-3 mb-5" style="width: 26rem">
+            <div class="card-body">
+                <h2 class="card-title">Create Advertisement</h2>
+                  <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-floating mb-3 mt-3">
+                        {{ form.title }}
+                        <label for="{{ form.title.label }}">Title</label>
+                    </div>
+                    <div class="form-floating mb-3 mt-3">
+                        {{ form.description }}
+                        <label for="{{ form.description.id_for_label }}">Description</label>
+                    </div>
+                    <div class="form-floating mb-3 mt-3">
+                        {{ form.category }}
+                        <label for="{{ form.category.id_for_label }}">Category</label>
+                    </div>
+                    <div class="form-floating mb-3 mt-3">
+                        {{ form.price }}
+                        <label for="{{ form.price.id_for_label }}">Price</label>
+                    </div>
+                    <div class="form-check form-switch mb-3 mt-3">
+                        {{ form.available }}
+                        <label for="{{ form.available.id_for_label }}">Available</label>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Target Audiences</label>
+                        <div class="form-check">
+                            {{ form.target_audiences }} <!-- TODO -->
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Create</button>
+                  </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}
