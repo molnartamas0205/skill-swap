@@ -77,11 +77,9 @@ class LoginForm(forms.Form):
 class AdvertisementForm(forms.ModelForm):
     target_audiences = forms.ModelMultipleChoiceField(
         queryset=TargetAudience.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
         required = True,
-        label="Target Audiences"
-
     )
+
     class Meta:
         model = TutoringService
         fields = ['title', 'description', 'category', 'price', 'available', 'target_audiences']
@@ -102,5 +100,6 @@ class AdvertisementForm(forms.ModelForm):
             'title': 'Advertisement Title',
             'description': 'Description',
             'category': 'Category',
-            'price': 'Price (USD)', 
+            'price': 'Price (USD)',
+            'target_audiences': 'Target Audience',
         }
