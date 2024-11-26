@@ -7,3 +7,6 @@ def home_view(request, *args, **kwargs):
 
 def about_view(request, *args, **kwargs):
     return render(request, 'about.html', {})
+
+def search_venues_view(request):
+    return render(request, 'search_venues.html')

@@ -6,7 +6,8 @@
         <div class="p-5 rounded shadow-lg border">
           <h3 class="text-center mb-4">Welcome To SkillSwap!</h3>
           <!-- Search bar -->
-          <form>
+          <form method=POST action="{% url 'search-venues' %}">
+            {% csrf_token %}
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Subject" aria-label="Search">
               <div class="input-group-append">
