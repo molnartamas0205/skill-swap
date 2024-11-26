@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from tutoring.models import TutoringService
+from fuzzywuzzy import fuzz
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
@@ -12,12 +13,16 @@ def about_view(request, *args, **kwargs):
 def search_subjects_view(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        tutors = TutoringService.objects.filter(title__contains=searched)
+       
+        tutors = TutoringService.objects.all() 
+        filtered_tutors = []
+        for tutor in tutors:
+            if fuzz.partial_ratio(searched.lower(), tutor.title.lower()) > 70:  
+                filtered_tutors.append(tutor)
 
-        return render(request, 'search_subjects.html', 
-        {
+        return render(request, 'search_subjects.html', {
             'searched': searched,
-            'tutors': tutors
+            'tutors': filtered_tutors
         })
     else:
         return render(request, 'search_subjects.html', {})
