@@ -2,8 +2,8 @@
 {% block content %}
     {% if searched %}
     <h3>Found tutors:</h3>
-        {% for subject in subjects %}
-            {{ subject }}<br/>
+        {% for tutor in tutors %}
+            {% include 'elements/tutor.html' %}
         {% endfor %}
     {% endif %}
 

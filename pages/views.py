@@ -12,12 +12,12 @@ def about_view(request, *args, **kwargs):
 def search_subjects_view(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        subjects = TutoringService.objects.filter(title__contains=searched)
+        tutors = TutoringService.objects.filter(title__contains=searched)
 
         return render(request, 'search_subjects.html', 
         {
             'searched': searched,
-            'subjects': subjects
+            'tutors': tutors
         })
     else:
         return render(request, 'search_subjects.html', {})
