@@ -28,7 +28,7 @@
                         <label for="{{ form.available.id_for_label }}">Available</label>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Target Audiences</label>
+                        <label class="form-label">{{ form.target_audiences.label }}</label>
                         {% for value, label in form.target_audiences.field.choices %}
                             <div class="form-check">
                                 <input
