@@ -77,21 +77,29 @@ class LoginForm(forms.Form):
 class AdvertisementForm(forms.ModelForm):
     target_audiences = forms.ModelMultipleChoiceField(
         queryset=TargetAudience.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
         required = True,
-        label="Target Audiences"
-
     )
+
     class Meta:
         model = TutoringService
         fields = ['title', 'description', 'category', 'price', 'available', 'target_audiences']
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 5}),
-            'price': forms.NumberInput(attrs={'step': 5}),
+            'title': forms.TextInput(attrs={'class': 'form-control',
+                                         'placeholder': 'Title'}),
+            'description': forms.Textarea(attrs={'rows': 5,
+                                                 'class': 'form-control',
+                                                 'placeholder': 'Description'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+            'price': forms.NumberInput(attrs={'step': 5,
+                                              'class': 'form-control',
+                                              'placeholder': 'Price'}),
+            'available': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'target_audiences': forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
         }
         labels = {
             'title': 'Advertisement Title',
             'description': 'Description',
             'category': 'Category',
-            'price': 'Price (USD)', 
+            'price': 'Price (USD)',
+            'target_audiences': 'Target Audience',
         }
