@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from pages.views import home_view, about_view, search_subjects_view
+from pages.views import home_view, about_view, search_subjects_view, category_list_view
 from tutoring.views import login_view, register_view, logout_view, tutor_list_view, create_advertisement_view
 
 
@@ -29,5 +29,6 @@ urlpatterns = [
     path('tutors/', tutor_list_view, name='tutors'),
     path('create/', create_advertisement_view, name = "create_advertisement"),
     path('admin/', admin.site.urls), #Keep admin at bottom
-    path('search_subjects/', search_subjects_view, name='search-subjects')
+    path('search_subjects/', search_subjects_view, name='search-subjects'),
+    path('categories/', category_list_view, name='categories')
 ]

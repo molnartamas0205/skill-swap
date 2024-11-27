@@ -24,3 +24,6 @@ def search_subjects_view(request):
         })
     else:
         return render(request, 'search_subjects.html', {})
+
+def category_list_view(request):
+    return render(request, 'categories.html', {})
