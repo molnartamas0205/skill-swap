@@ -3,11 +3,18 @@
   <div class="container my-5">
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-10">
+        <h2>Categories</h2>
         <div class="list-group">
           {% for category in categories %}
-            <a href="{% url 'category_detail' category.id %}" class="list-group-item list-group-item-action">
-              {{ category.name }}
-            </a>
+          <a href="{% url 'category_detail' category.name %}" class="list-group-item list-group-item-action py-4" aria-current="true">
+            <div class="d-flex w-100 align-items-center">
+              <div class="w-100">
+                <div class="d-flex justify-content-between">
+                  <h5 class="mb-1">{{ category.name }}</h5>
+                </div>
+              </div>
+            </div>
+          </a>
           {% empty %}
             <p>No categories available.</p>
           {% endfor %}

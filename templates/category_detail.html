@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container my-5">
+    <h2 class="mb-4">Category: {{ category.name }}</h2>
+    <div class="list-group">
+      {% for tutor in tutors %}
+      <a href="#" class="list-group-item list-group-item-action py-4">
+        <div class="d-flex w-100 align-items-center">
+          <div class="w-100">
+            <div class="d-flex justify-content-between">
+              <h5 class="mb-1">{{ tutor.title }}</h5>
+              <small>{{ tutor.created_at|timesince }} ago</small>
+            </div>
+            <p class="mb-1">{{ tutor.description }}</p>
+            <small>Price: ${{ tutor.price }}</small>
+          </div>
+        </div>
+      </a>
+      {% empty %}
+        <p>No tutors available in this category.</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

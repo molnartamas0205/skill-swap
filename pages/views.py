@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from tutoring.models import TutoringService
+from tutoring.models import TutoringService, Category
 from fuzzywuzzy import fuzz
 def home_view(request, *args, **kwargs):
     return render(request, 'home.html', {})
@@ -26,4 +26,13 @@ def search_subjects_view(request):
         return render(request, 'search_subjects.html', {})
 
 def category_list_view(request):
-    return render(request, 'categories.html', {})
+    categories = Category.objects.all()
+    return render(request, 'categories.html', {'categories': categories})
+
+def category_detail_view(request, category_name):
+    category = get_object_or_404(Category, name=category_name)
+    tutors = TutoringService.objects.filter(category=category)
+    return render(request, 'category_detail.html', {
+        'category': category,
+        'tutors': tutors
+    })
