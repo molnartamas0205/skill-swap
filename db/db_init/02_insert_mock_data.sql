@@ -25,6 +25,7 @@ VALUES
 (1, 3, 'CS Calculus Tutoring', 'Offering specialized calculus tutoring for CS students.', 50.00),
 (2, 2, 'Advanced Calculus Tutoring', 'In-depth tutoring for calculus enthusiasts.', 40.00);
 
+
 -- Insert service audiences
 INSERT INTO service_audiences (tutoring_service_id, target_audience_id)
 VALUES 

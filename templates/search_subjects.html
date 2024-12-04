@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if searched %}
+    <h3>Found tutors:</h3>
+        {% for tutor in tutors %}
+            {% include 'elements/tutor.html' %}
+        {% endfor %}
+    {% endif %}
+
+
+{% endblock%}

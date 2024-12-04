@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.hashers import make_password
+import pickle
 
 
 class CustomUserManager(BaseUserManager):
@@ -144,7 +145,6 @@ class TutoringService(models.Model):
 
     def __str__(self):
         return self.title
-
 
 # ServiceAudience model (Many-to-Many relationship between TutoringService and TargetAudience)
 class ServiceAudience(models.Model):

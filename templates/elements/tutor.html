@@ -1,0 +1,12 @@
+<a href="#" class="list-group-item list-group-item-action py-4" aria-current="true">
+    <div class="d-flex w-100 align-items-center">
+      <div class="w-100">
+        <div class="d-flex justify-content-between">
+          <h5 class="mb-1">{{ tutor.title }}</h5>
+          <small>{{ tutor.created_at|timesince }} ago</small> <!-- Displaying time since creation -->
+        </div>
+        <p class="mb-1">{{ tutor.description }}</p>
+        <small>Price: ${{ tutor.price }} | Category: {{ tutor.category }}</small>
+      </div>
+    </div>
+  </a>
