@@ -52,16 +52,18 @@ jobs:
           sleep 2;
         done
 
-    # Step 5: Run database migrations
+    # Step 5: Set SECRET_KEY environment variable
+    - name: Set SECRET_KEY environment variable
+      run: echo "SECRET_KEY=aabb" >> $GITHUB_ENV
+
+    # Step 6: Run database migrations
     - name: Run database migrations
       run: |
         python manage.py migrate
-        python manage.py migrate sessions
 
-    # Step 6: Run Django unit tests
+    # Step 7: Run Django unit tests
     - name: Run Django tests
       env:
         DATABASE_URL: postgres://django_user:django_password@localhost:5432/django_db
       run: |
         python manage.py test
-
