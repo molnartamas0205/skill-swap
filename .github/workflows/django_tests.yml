@@ -56,7 +56,7 @@ jobs:
     - name: Run database migrations
       run: |
         python manage.py migrate
-        python manage.py migrate session
+        python manage.py migrate sessions
 
     # Step 6: Run Django unit tests
     - name: Run Django tests
